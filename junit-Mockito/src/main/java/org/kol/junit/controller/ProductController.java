@@ -24,9 +24,11 @@ public class ProductController {
     }
 
     @GetMapping("/fetch-all")
-    public List<Product> getAllBookRecords(){
+    public List<Product> getAllProductRecords(){
         return  productRepository.findAll();
     }
+
+
 
 
 }
