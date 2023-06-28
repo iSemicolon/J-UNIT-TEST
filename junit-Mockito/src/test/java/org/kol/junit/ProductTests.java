@@ -44,6 +44,9 @@ public class ProductTests {
     ObjectMapper objectMapper=new ObjectMapper();
     ObjectWriter objectWriter= objectMapper.writer();
 
+    Product RECORD_1=new Product(1L, "apple", "iphone",5);
+    Product RECORD_2=new Product(2L, "nokia", "lumia",2);
+    Product RECORD_3=new Product(3L, "samsung", "galaxy",3);
 
 
     @Before
@@ -77,6 +80,20 @@ public class ProductTests {
                 .andExpect(jsonPath("$.name", is("iphone-12")));
 
     }
+
+    @Test
+    public void getAllRecords_sucess() throws  Exception{
+        List<Product> records=new ArrayList<>(Arrays.asList(RECORD_1,RECORD_2,RECORD_3));
+        Mockito.when(productRepository.findAll()).thenReturn(records);
+        mockMvc.perform(MockMvcRequestBuilders.get("/product/fetch-all")
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$", hasSize(3)))
+                .andExpect(jsonPath("$[2].name", is("samsung")))
+                .andExpect(jsonPath("$[1].name", is("nokia")));;
+
+    }
+
 
 
 }
