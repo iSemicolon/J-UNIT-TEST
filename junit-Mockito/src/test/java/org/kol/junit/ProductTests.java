@@ -23,6 +23,7 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 
 import static org.hamcrest.Matchers.*;
@@ -93,7 +94,20 @@ public class ProductTests {
                 .andExpect(jsonPath("$[1].name", is("nokia")));;
 
     }
-    
+
+    @Test
+    public void getProductById_sucess() throws  Exception{
+        List<Product> records=new ArrayList<>(Arrays.asList(RECORD_1,RECORD_2,RECORD_3));
+        Mockito.when(productRepository.findById(RECORD_1.getProductId())).thenReturn(Optional.of(RECORD_1));
+        mockMvc.perform(MockMvcRequestBuilders.get("/product/fetch-by-id/1")
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$", notNullValue()))
+                .andExpect(jsonPath("$.name", is("apple")));;
+
+    }
+
+
 
 
 

@@ -28,6 +28,11 @@ public class ProductController {
         return  productRepository.findAll();
     }
 
+    @GetMapping(value = "fetch-by-id/{productId}")
+    public Product getProductById(@PathVariable(value = "productId") Long productId){
+        return  productRepository.findById(productId).get();
+    }
+
 
 
 
