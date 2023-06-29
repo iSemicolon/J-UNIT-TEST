@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.runner.RunWith;
 import org.kol.junit.controller.ProductController;
 import org.kol.junit.model.Product;
@@ -83,7 +84,8 @@ public class ProductTests {
     }
 
     @Test
-    public void getAllRecords_sucess() throws  Exception{
+    @DisplayName("fetch all product")
+    public void getAllProducts_sucess() throws  Exception{
         List<Product> records=new ArrayList<>(Arrays.asList(RECORD_1,RECORD_2,RECORD_3));
         Mockito.when(productRepository.findAll()).thenReturn(records);
         mockMvc.perform(MockMvcRequestBuilders.get("/product/fetch-all")
@@ -96,6 +98,7 @@ public class ProductTests {
     }
 
     @Test
+    @DisplayName("ById fetch all product details")
     public void getProductById_sucess() throws  Exception{
         List<Product> records=new ArrayList<>(Arrays.asList(RECORD_1,RECORD_2,RECORD_3));
         Mockito.when(productRepository.findById(RECORD_1.getProductId())).thenReturn(Optional.of(RECORD_1));
@@ -108,7 +111,8 @@ public class ProductTests {
     }
 
     @Test
-    public void deleteRecordById_sucess() throws  Exception{
+    @DisplayName("delete product by id")
+    public void deleteProductById_sucess() throws  Exception{
 
         Mockito.when(productRepository.findById(RECORD_2.getProductId())).thenReturn(Optional.of(RECORD_1));
 

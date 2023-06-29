@@ -33,14 +33,14 @@ public class ProductController {
     }
 
     @DeleteMapping(value = "{productId}")
-    public void deleteBookById(@PathVariable(value = "productId") Long bookId) throws  Exception{
+    public void deleteProductById(@PathVariable(value = "productId") Long productId) throws  Exception{
 
-        if(!productRepository.findById(bookId).isPresent())
+        if(!productRepository.findById(productId).isPresent())
         {
-            throw  new NotFoundException("Book Id "+ bookId+ "Not present");
+            throw  new NotFoundException("Book Id "+ productId+ "Not present");
         }
 
-        productRepository.deleteById(bookId);
+        productRepository.deleteById(productId);
     }
 
 
