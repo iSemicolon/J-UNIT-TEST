@@ -1,6 +1,7 @@
 package org.kol.junit.controller;
 
 import jakarta.validation.Valid;
+import org.kol.junit.exception.NotFoundException;
 import org.kol.junit.model.Product;
 import org.kol.junit.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,8 +16,6 @@ public class ProductController {
 
     @Autowired
     ProductRepository productRepository;
-
-
 
     @PostMapping("/create")
     public Product createProductRecord(@Valid @RequestBody  Product productRecord){
@@ -33,7 +32,16 @@ public class ProductController {
         return  productRepository.findById(productId).get();
     }
 
+    @DeleteMapping(value = "{productId}")
+    public void deleteBookById(@PathVariable(value = "productId") Long bookId) throws  Exception{
 
+        if(!productRepository.findById(bookId).isPresent())
+        {
+            throw  new NotFoundException("Book Id "+ bookId+ "Not present");
+        }
+
+        productRepository.deleteById(bookId);
+    }
 
 
 }

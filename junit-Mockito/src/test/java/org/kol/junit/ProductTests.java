@@ -107,6 +107,18 @@ public class ProductTests {
 
     }
 
+    @Test
+    public void deleteRecordById_sucess() throws  Exception{
+
+        Mockito.when(productRepository.findById(RECORD_2.getProductId())).thenReturn(Optional.of(RECORD_1));
+
+        mockMvc.perform(MockMvcRequestBuilders
+                        .delete("/product/2")
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk());
+
+    }
+
 
 
 
