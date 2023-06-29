@@ -3,6 +3,7 @@ package org.kol.junit;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class CalculatorTests {
 
@@ -39,6 +40,6 @@ public class CalculatorTests {
 
         calculator=new Calculator();
         assertEquals(8, calculator.div(40,5));
-        assertEquals(0, calculator.div(3,0));
+        assertThrows(ArithmeticException.class, () ->  calculator.div(3,0));
     }
 }
