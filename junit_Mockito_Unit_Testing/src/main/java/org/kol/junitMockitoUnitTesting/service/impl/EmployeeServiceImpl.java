@@ -6,6 +6,8 @@ import org.kol.junitMockitoUnitTesting.repository.EmployeeRepository;
 import org.kol.junitMockitoUnitTesting.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -28,4 +30,26 @@ public class EmployeeServiceImpl implements EmployeeService {
         }
         return employeeRepository.save(employee);
     }
+
+    @Override
+    public List<Employee> getAllEmployee() {
+        return employeeRepository.findAll();
+    }
+
+    @Override
+    public Optional<Employee> getEmployeeById(Long employeeId) {
+        return employeeRepository.findById(employeeId);
+    }
+
+    @Override
+    public Employee updateEmployee(Employee updateEmployee) {
+        return employeeRepository.save(updateEmployee);
+    }
+
+    @Override
+    public void deleteEmployee(Long employeeId) {
+        employeeRepository.deleteById(employeeId);
+    }
+
+
 }
