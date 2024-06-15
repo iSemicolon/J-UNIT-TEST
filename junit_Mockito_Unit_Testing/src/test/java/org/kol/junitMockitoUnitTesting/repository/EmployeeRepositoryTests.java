@@ -1,6 +1,7 @@
 package org.kol.junitMockitoUnitTesting.repository;
 
 import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.kol.junitMockitoUnitTesting.model.Employee;
@@ -16,6 +17,28 @@ public class EmployeeRepositoryTests {
     @Autowired
     EmployeeRepository employeeRepository;
 
+    Employee employee1;
+    Employee employee2;
+
+
+    @BeforeEach
+    public void setUp(){
+
+
+         employee1= Employee.builder()
+                .firstName("Palash")
+                .lastName("Samanta")
+                .email("palash.samanta7497@gmail.com")
+                .build();
+
+         employee2= Employee.builder()
+                .firstName("Kishalay")
+                .lastName("Samanta")
+                .email("kishalay01@gmail.com")
+                .build();
+
+    }
+
     //junit test for save Employee Operation
 
     @DisplayName("save Employee Operation")
@@ -24,14 +47,16 @@ public class EmployeeRepositoryTests {
 
         //given- precondition or setup
 
+ /*
         Employee employee=Employee.builder()
                                   .firstName("Palash")
                                   .lastName("Samanta")
                                   .email("palash.samanta7497@gmail.com")
                                   .build();
 
+   */
         //when- action or behaviour of method
-        Employee saveEmployee=employeeRepository.save(employee);
+        Employee saveEmployee=employeeRepository.save(employee1);
 
 
         //then- verify the output
@@ -49,6 +74,8 @@ public class EmployeeRepositoryTests {
 
         //give- precondition
 
+/*
+
         Employee employee1= Employee.builder()
                                     .firstName("Palash")
                                     .lastName("Samanta")
@@ -60,6 +87,8 @@ public class EmployeeRepositoryTests {
                 .lastName("Jana")
                 .email("janakalyna01@gmail.com")
                 .build();
+*/
+
 
         employeeRepository.save(employee1);
         employeeRepository.save(employee2);
@@ -82,6 +111,8 @@ public class EmployeeRepositoryTests {
     public void giveEmployeeList_whenFindById_thenEmployee(){
 
         //give
+
+    /*
         Employee employee1= Employee.builder()
                 .firstName("Palash")
                 .lastName("Samanta")
@@ -94,6 +125,8 @@ public class EmployeeRepositoryTests {
                 .email("janakalyna01@gmail.com")
                 .build();
 
+
+        */
 
         employeeRepository.save(employee1);
         employeeRepository.save(employee2);
@@ -115,6 +148,9 @@ public class EmployeeRepositoryTests {
     public void giveEmployeeList_whenFindByEmailId_thenEmployee(){
 
         //give
+
+/*
+
         Employee employee1= Employee.builder()
                 .firstName("Palash")
                 .lastName("Samanta")
@@ -127,6 +163,7 @@ public class EmployeeRepositoryTests {
                 .email("janakalyna01@gmail.com")
                 .build();
 
+*/
 
         employeeRepository.save(employee1);
         employeeRepository.save(employee2);
@@ -148,12 +185,14 @@ public class EmployeeRepositoryTests {
     public void giveEmployeeId_whenUpdateEmployee_thenReturnEmployee(){
 
         //give
+
+ /*
         Employee employee1= Employee.builder()
                 .firstName("Palash")
                 .lastName("Samanta")
                 .email("palash.samanta7497@gmail.com")
                 .build();
-
+*/
         Employee employee2= Employee.builder()
                 .firstName("Kalyan")
                 .lastName("Jana")
@@ -184,6 +223,9 @@ public class EmployeeRepositoryTests {
     public void giveEmployeeId_whenDeleteEmployeeById_thenReturnNoEmployee(){
 
         //give
+
+/*
+
         Employee employee1= Employee.builder()
                 .firstName("Palash")
                 .lastName("Samanta")
@@ -196,6 +238,7 @@ public class EmployeeRepositoryTests {
                 .email("kishalay01@gmail.com")
                 .build();
 
+*/
 
         employeeRepository.save(employee1);
         employeeRepository.save(employee2);
@@ -221,6 +264,8 @@ public class EmployeeRepositoryTests {
     public void giveFirstNameLastName_whenFindByJPQL_thenReturnEmployee(){
 
         //give
+
+ /*
         Employee employee1= Employee.builder()
                 .firstName("Palash")
                 .lastName("Samanta")
@@ -233,7 +278,7 @@ public class EmployeeRepositoryTests {
                 .email("kishalay01@gmail.com")
                 .build();
 
-
+*/
         employeeRepository.save(employee1);
         employeeRepository.save(employee2);
 
@@ -259,6 +304,9 @@ public class EmployeeRepositoryTests {
     public void giveFirstNameLastName_whenFindByJPQLParamName_thenReturnEmployee(){
 
         //give
+
+/*
+
         Employee employee1= Employee.builder()
                 .firstName("Palash")
                 .lastName("Samanta")
@@ -271,6 +319,7 @@ public class EmployeeRepositoryTests {
                 .email("kishalay01@gmail.com")
                 .build();
 
+*/
 
         employeeRepository.save(employee1);
         employeeRepository.save(employee2);
@@ -296,6 +345,8 @@ public class EmployeeRepositoryTests {
     public void giveFirstNameLastName_whenFindByNativeSQL_thenReturnEmployee(){
 
         // given - precondition or setup
+
+ /*
         Employee employee1= Employee.builder()
                 .firstName("Palash")
                 .lastName("Samanta")
@@ -308,7 +359,7 @@ public class EmployeeRepositoryTests {
                 .email("kishalay01@gmail.com")
                 .build();
 
-
+*/
         employeeRepository.save(employee1);
         employeeRepository.save(employee2);
 
@@ -326,6 +377,9 @@ public class EmployeeRepositoryTests {
     public void giveFirstNameLastName_whenFindByNativeSQLNamedParam_thenReturnEmployee(){
 
         // given - precondition or setup
+
+/*
+
         Employee employee1= Employee.builder()
                 .firstName("Palash")
                 .lastName("Samanta")
@@ -338,6 +392,7 @@ public class EmployeeRepositoryTests {
                 .email("kishalay01@gmail.com")
                 .build();
 
+*/
 
         employeeRepository.save(employee1);
         employeeRepository.save(employee2);
