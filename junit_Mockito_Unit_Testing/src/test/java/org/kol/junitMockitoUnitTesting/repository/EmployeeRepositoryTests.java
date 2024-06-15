@@ -216,7 +216,139 @@ public class EmployeeRepositoryTests {
 
     }
 
+    @DisplayName("Find Employee using JPQL index Based")
+    @Test
+    public void giveFirstNameLastName_whenFindByJPQL_thenReturnEmployee(){
+
+        //give
+        Employee employee1= Employee.builder()
+                .firstName("Palash")
+                .lastName("Samanta")
+                .email("palash.samanta7497@gmail.com")
+                .build();
+
+        Employee employee2= Employee.builder()
+                .firstName("Kishalay")
+                .lastName("Samanta")
+                .email("kishalay01@gmail.com")
+                .build();
 
 
+        employeeRepository.save(employee1);
+        employeeRepository.save(employee2);
+
+
+        //when
+        String firstName="Kishalay";
+        String lastName="Samanta";
+
+        Employee savedEmployee=employeeRepository.findByJPQL(firstName,lastName );
+
+
+
+
+        //then
+        Assertions.assertThat(savedEmployee).isNotNull();
+        Assertions.assertThat(savedEmployee.getFirstName()).isEqualTo("Kishalay");
+
+
+    }
+
+    @DisplayName("Find Employee using JPQL Param Name")
+    @Test
+    public void giveFirstNameLastName_whenFindByJPQLParamName_thenReturnEmployee(){
+
+        //give
+        Employee employee1= Employee.builder()
+                .firstName("Palash")
+                .lastName("Samanta")
+                .email("palash.samanta7497@gmail.com")
+                .build();
+
+        Employee employee2= Employee.builder()
+                .firstName("Kishalay")
+                .lastName("Samanta")
+                .email("kishalay01@gmail.com")
+                .build();
+
+
+        employeeRepository.save(employee1);
+        employeeRepository.save(employee2);
+
+
+        //when
+        String firstName="Kishalay";
+        String lastName="Samanta";
+
+        Employee savedEmployee=employeeRepository.findByNameParamBasedJPQL(firstName,lastName );
+
+
+        //then
+        Assertions.assertThat(savedEmployee).isNotNull();
+        Assertions.assertThat(savedEmployee.getFirstName()).isEqualTo("Kishalay");
+
+
+    }
+
+
+    @DisplayName("Find Employee using Native SQL")
+    @Test
+    public void giveFirstNameLastName_whenFindByNativeSQL_thenReturnEmployee(){
+
+        // given - precondition or setup
+        Employee employee1= Employee.builder()
+                .firstName("Palash")
+                .lastName("Samanta")
+                .email("palash.samanta7497@gmail.com")
+                .build();
+
+        Employee employee2= Employee.builder()
+                .firstName("Kishalay")
+                .lastName("Samanta")
+                .email("kishalay01@gmail.com")
+                .build();
+
+
+        employeeRepository.save(employee1);
+        employeeRepository.save(employee2);
+
+
+        // when -  action or the behaviour that we are going test
+        Employee savedEmployee = employeeRepository.findByNativeSQLquery(employee2.getFirstName(), employee2.getLastName());
+
+        // then - verify the output
+        Assertions.assertThat(savedEmployee).isNotNull();
+        Assertions.assertThat(savedEmployee.getFirstName()).isEqualTo("Kishalay");
+    }
+
+    @DisplayName("Find Employee using Native SQL named Param")
+    @Test
+    public void giveFirstNameLastName_whenFindByNativeSQLNamedParam_thenReturnEmployee(){
+
+        // given - precondition or setup
+        Employee employee1= Employee.builder()
+                .firstName("Palash")
+                .lastName("Samanta")
+                .email("palash.samanta7497@gmail.com")
+                .build();
+
+        Employee employee2= Employee.builder()
+                .firstName("Kishalay")
+                .lastName("Samanta")
+                .email("kishalay01@gmail.com")
+                .build();
+
+
+        employeeRepository.save(employee1);
+        employeeRepository.save(employee2);
+
+
+        // when -  action or the behaviour that we are going test
+        Employee savedEmployee = employeeRepository.findByNativeSQLNamedParam(employee2.getFirstName(), employee2.getLastName());
+
+        // then - verify the output
+        Assertions.assertThat(savedEmployee).isNotNull();
+        Assertions.assertThat(savedEmployee.getFirstName()).isEqualTo("Kishalay");
+    }
 
 }
